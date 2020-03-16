@@ -6,9 +6,10 @@ class ArticleForm(forms.ModelForm):
 
     class Meta:
         model = Article
-        fields = ('title', 'prev', 'text',)
+        fields = ('title', 'prev', 'text', 'photo')
         labels = {
             'title': 'Название',
             'prev': 'Аннотация',
-            'text': 'Содержание'
+            'text': 'Содержание',
+            'photo': 'Обложка'
         }

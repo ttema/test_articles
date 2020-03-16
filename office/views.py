@@ -23,8 +23,10 @@ def write_article(request):
         article.title = request.POST.get('title')
         article.prev = request.POST.get('prev')
         article.text = request.POST.get('text')
+        if request.FILES.get('photo') is not None:
+            article.photo = request.FILES.get('photo')
         article.create_preview()
-        article.publish()
+        article.save()
         return HttpResponseRedirect('/')
     return render(request, 'add_article.html', context={'form': form})
 

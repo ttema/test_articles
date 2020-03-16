@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from articles import settings
 from office import views
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -25,4 +27,4 @@ urlpatterns = [
     path('article/<int:pk>', views.view_article, name='article'),
     path('delete/<int:pk>', views.del_article, name='delete'),
     path('edit/<int:pk>', views.edit_article, name='edit')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
