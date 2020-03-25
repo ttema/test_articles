@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Article
-from .forms import ArticleForm
+from .models import Article, TimePeriod
+from .forms import ArticleForm, TimePeriodForm
 
 
 def tape(request):
@@ -41,3 +41,23 @@ def del_article(request, pk):
 @login_required
 def edit_article(request, pk):
     pass
+
+
+@login_required
+def view_periods(request):
+    form = TimePeriodForm
+    if request.method == 'POST':
+        form = TimePeriodForm(request.POST)
+        if form.is_valid():
+            period = form.save(commit=False)
+            period.save()
+            return HttpResponseRedirect('/')
+    periods = TimePeriod.objects.all()
+    return render(request, 'date_manager.html', context={'periods': periods, 'form': form})
+
+
+@login_required
+def del_period(request, pk):
+    period = TimePeriod.objects.filter(id=pk)
+    period.delete()
+    return HttpResponseRedirect('/')

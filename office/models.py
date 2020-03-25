@@ -17,3 +17,12 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class TimePeriod(models.Model):
+    start_date = models.DateField()
+    end_date = models.DateField()
+    description = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.descr1iption
