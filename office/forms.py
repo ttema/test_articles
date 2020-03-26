@@ -23,5 +23,5 @@ class TimePeriodForm(forms.ModelForm):
         labels = {
             'start_date': 'Дата начала',
             'end_date': 'Дата окончания',
-            'description': 'НАзвание события'
+            'description': 'Название события'
         }
